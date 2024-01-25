@@ -1,4 +1,5 @@
-﻿using Application.Common.Behaviors;
+﻿using Application.Auth;
+using Application.Common.Behaviors;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +18,9 @@ public static class DependencyInjection
         services.AddValidatorsFromAssembly(assembly);
 
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
+        services.AddSingleton<AuthOptions>();
+        services.AddScoped<JWTGenerator>();
         
         return services;
     }
