@@ -1,4 +1,5 @@
-﻿using Application.Auth;
+﻿using System.Reflection;
+using Application.Auth;
 using Application.Common.Behaviors;
 using FluentValidation;
 using MediatR;
@@ -12,15 +13,15 @@ public static class DependencyInjection
     {
         var assembly = typeof(DependencyInjection).Assembly;
         
+        services.AddSingleton<AuthOptions>();
+        services.AddScoped<JWTGenerator>();
+        
         services.AddMediatR(configuration =>
             configuration.RegisterServicesFromAssembly(assembly));
-
+        
         services.AddValidatorsFromAssembly(assembly);
 
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-
-        services.AddSingleton<AuthOptions>();
-        services.AddScoped<JWTGenerator>();
         
         return services;
     }
