@@ -1,0 +1,16 @@
+C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Application\bin\Debug\net8.0\Application.deps.json
+C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Application\bin\Debug\net8.0\Application.dll
+C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Application\bin\Debug\net8.0\Application.pdb
+C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Application\bin\Debug\net8.0\Domain.dll
+C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Application\bin\Debug\net8.0\Domain.pdb
+C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Application\obj\Debug\net8.0\Application.csproj.AssemblyReference.cache
+C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Application\obj\Debug\net8.0\Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Application\obj\Debug\net8.0\Application.AssemblyInfoInputs.cache
+C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Application\obj\Debug\net8.0\Application.AssemblyInfo.cs
+C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Application\obj\Debug\net8.0\Application.csproj.CoreCompileInputs.cache
+C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Application\obj\Debug\net8.0\Application.sourcelink.json
+C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Application\obj\Debug\net8.0\Application.csproj.CopyComplete
+C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Application\obj\Debug\net8.0\Application.dll
+C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Application\obj\Debug\net8.0\refint\Application.dll
+C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Application\obj\Debug\net8.0\Application.pdb
+C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Application\obj\Debug\net8.0\ref\Application.dll

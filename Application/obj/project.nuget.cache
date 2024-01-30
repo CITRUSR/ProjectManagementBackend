@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "e29rQQuERZ0hdZu+fOlRX7li4rbu8qkC2BJkc5XVYJ38nXYnBEiEjoosNOYVa1XPoHYbsn4O08HgtwFp++xj3Q==",
+  "dgSpecHash": "ws3DnnLKp4gUBCyv9xk6xxh1AbUMDoNCL8JNTQ6uchdj/40GxPefyAt25Bl/2c42iUMpOIq9hils7K36o+loTw==",
   "success": true,
   "projectFilePath": "C:\\DocumentProg\\Projects\\f_projects\\project_management_\\ProjectManagementBackend\\Application\\Application.csproj",
   "expectedPackageFiles": [
@@ -33,6 +33,7 @@
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.identitymodel.protocols\\7.1.2\\microsoft.identitymodel.protocols.7.1.2.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\7.1.2\\microsoft.identitymodel.protocols.openidconnect.7.1.2.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.identitymodel.tokens\\7.1.2\\microsoft.identitymodel.tokens.7.1.2.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\serilog\\3.1.1\\serilog.3.1.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.1.2\\system.identitymodel.tokens.jwt.7.1.2.nupkg.sha512"
   ],
   "logs": []

@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Presentation</name>
+    </assembly>
+    <members>
+        <member name="M:Presentation.Controllers.UserController.LoginUser(Presentation.Models.User.LoginUserDTO)">
+            <summary>
+            LoginUser
+            </summary>
+            <remarks>
+            Request type:
+            
+                Post/LoginUser
+                {  
+                    "Login": "User",
+                    "Password": "12345QWasg",
+                }
+            s
+            </remarks>
+            <param name="model"></param>
+            <returns>Return jwt token</returns>
+            <response code="200">Return jwt token</response>
+            <response code="400">Return validation exceptions</response>
+            <response code="404">Return if user not found</response>
+            <response code="500">Return if identity error or some other</response>
+        </member>
+        <member name="M:Presentation.Controllers.UserController.RegisterUser(Presentation.Models.User.RegisterUserDTO)">
+            <summary>
+            Registration user
+            </summary>
+            <remarks>
+            Request type:
+            
+                Post/RegisterUser
+                {
+                    "Login": "User",
+                    "Password": "12345qwerty",
+                    "ConfirmPassword": "12345qwerty"
+                }
+            
+            </remarks>
+            <param name="model"></param>
+            <returns>No Content</returns>
+            <response code="200">No Content</response>
+            <response code="400">Return if validation exceptions</response>
+            <response code="500">Return if identity error or some other</response>
+        </member>
+    </members>
+</doc>

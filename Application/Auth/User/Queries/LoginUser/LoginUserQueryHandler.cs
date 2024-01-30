@@ -2,6 +2,7 @@
 using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Serilog;
 
 namespace Application.Auth.User.Queries.LoginUser;
 
@@ -33,6 +34,8 @@ public class LoginUserQueryHandler : IRequestHandler<LoginUserQuery, string>
         {
             throw new IdentityException("Login or password is wrong");
         }
+        
+        Log.Information($"User with name {request.Login} is login");
         
         return await _jwtGenerator.Generate(user);
     }
