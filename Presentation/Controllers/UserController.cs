@@ -23,7 +23,7 @@ public class UserController(IMediator mediator) : BaseController(mediator)
     ///         "Login": "User",
     ///         "Password": "12345QWasg",
     ///     }
-    /// s
+    /// 
     /// </remarks>
     /// <param name="model"></param>
     /// <returns>Return jwt token</returns>
