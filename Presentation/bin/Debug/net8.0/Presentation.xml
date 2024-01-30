@@ -23,7 +23,7 @@
             <response code="200">Return jwt token</response>
             <response code="400">Return validation exceptions</response>
             <response code="404">Return if user not found</response>
-            <response code="500">Return if identity error or some other</response>
+            <response code="401">Return if identity error</response>
         </member>
         <member name="M:Presentation.Controllers.UserController.RegisterUser(Presentation.Models.User.RegisterUserDTO)">
             <summary>
@@ -44,7 +44,7 @@
             <returns>No Content</returns>
             <response code="200">No Content</response>
             <response code="400">Return if validation exceptions</response>
-            <response code="500">Return if identity error or some other</response>
+            <response code="401">Return if identity error</response>
         </member>
     </members>
 </doc>

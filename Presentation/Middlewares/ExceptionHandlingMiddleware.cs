@@ -31,7 +31,7 @@ public class ExceptionHandlingMiddleware(RequestDelegate next)
         {
             case ValidationException ex:
                 statusCode = StatusCodes.Status400BadRequest;
-                result = JsonSerializer.Serialize(ex.Errors);
+                result = JsonConvert.SerializeObject(ex.Errors);
                 break;
             case NotFoundException ex:
                 statusCode = StatusCodes.Status404NotFound;
@@ -39,9 +39,12 @@ public class ExceptionHandlingMiddleware(RequestDelegate next)
                 result = JsonConvert.SerializeObject(ex.Error);
                 break;
             case IdentityException ex:
+                statusCode = StatusCodes.Status401Unauthorized;
                 result = JsonConvert.SerializeObject(ex.Errors);
                 break;
         }
+        
+        Log.Error(exception.Message);
         
         context.Response.ContentType = "application/json";
         context.Response.StatusCode = statusCode;

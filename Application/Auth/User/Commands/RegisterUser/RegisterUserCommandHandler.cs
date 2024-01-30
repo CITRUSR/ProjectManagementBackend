@@ -25,7 +25,7 @@ public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand>
 
         if (!result.Succeeded)
         {
-            throw new IdentityException("Identity error",result.Errors);
+            throw new IdentityException("Identity error", result.Errors);
         }
     }
 }
