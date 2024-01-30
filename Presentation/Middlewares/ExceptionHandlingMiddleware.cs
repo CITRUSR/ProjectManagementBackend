@@ -1,7 +1,9 @@
-﻿using System.Text.Json;
-using Application.Common.Exceptions;
+﻿using Application.Common.Exceptions;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Serilog;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Presentation.Middlewares;
 
@@ -25,7 +27,6 @@ public class ExceptionHandlingMiddleware(RequestDelegate next)
     {
         int statusCode = StatusCodes.Status500InternalServerError;
         string result = "Server error";
-
         switch (exception)
         {
             case ValidationException ex:
@@ -34,13 +35,14 @@ public class ExceptionHandlingMiddleware(RequestDelegate next)
                 break;
             case NotFoundException ex:
                 statusCode = StatusCodes.Status404NotFound;
-                result = JsonSerializer.Serialize(ex);
+                Log.Error(ex.Message);
+                result = JsonConvert.SerializeObject(ex.Error);
                 break;
             case IdentityException ex:
-                result = JsonSerializer.Serialize(ex.Errors);
+                result = JsonConvert.SerializeObject(ex.Errors);
                 break;
         }
-
+        
         context.Response.ContentType = "application/json";
         context.Response.StatusCode = statusCode;
         await context.Response.WriteAsync(result);
