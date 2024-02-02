@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Serilog;
 using JsonSerializer = System.Text.Json.JsonSerializer;
+using ValidationException = Application.Common.Exceptions.ValidationException;
 
 namespace Presentation.Middlewares;
 
