@@ -64,6 +64,9 @@ namespace Infrastructure.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<Guid>("ProjectId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -91,13 +94,14 @@ namespace Infrastructure.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3d057bdd-9312-4ea5-90dc-0b77bcca9827",
+                            ConcurrencyStamp = "76323306-0bc8-46b1-8a70-7abf90be3edd",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "CITRUSADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEH6blNVMW3yoWhbOHjjCwZLX8jEYWwHB1c1XVIaF1lP/NyCR/sa4GTixVuJgBNsSpA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOfJkYzf4k0oAsADEKubpdSItYueH8VIqva659VrDe4xw1EZwrtDnOsp1BgEBwUsCw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "71af6d9a-c2b2-458c-b137-d42ff1ec8ac9",
+                            ProjectId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            SecurityStamp = "bbb6c1f1-75f0-4857-9089-05b852e8fe81",
                             TwoFactorEnabled = false,
                             UserName = "CitrusAdmin"
                         },
@@ -105,13 +109,14 @@ namespace Infrastructure.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1c70ce64-f394-4b4b-9dc6-156afc9c0668",
+                            ConcurrencyStamp = "586a5e59-dd36-4358-bdb8-a9aeb5f98bce",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "CITRUSPROJECTMANAGER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBtEqQ+L1TPX0lka0MXPfx95oqZ/gc6DGtFFAVQJ37R5nPq3tRIN09gSCQY2cd2cNg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOH+VK4wm0NkX/QMBoN6FlkwM9sHm9SUhszkhrDvnGcvHnHJ11rXL3OrSbiHOGr84Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f613cc05-e75f-4ad0-9bcb-eb601fffdfb2",
+                            ProjectId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            SecurityStamp = "e477c940-f03f-4783-a9da-61e591c592eb",
                             TwoFactorEnabled = false,
                             UserName = "CitrusProjectManager"
                         },
@@ -119,16 +124,44 @@ namespace Infrastructure.Migrations
                         {
                             Id = "3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e6300383-2f59-4576-91ae-f1d9aa65ad41",
+                            ConcurrencyStamp = "0afb6b09-776e-459d-931a-57ddfb362677",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "CITRUSUSER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGhHBJbTE8mkx8VpMrNYAWPCKrNSXfbVAWquLIpKunfl4NhN6GDWFw+j3qCC4tiL+g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAzADlHHxWQLoQTiMAyTOaQXY+JHCc93z0gh3IMBUi3sqic6/VW6XM5KdtFkfHxxuQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3bed8518-53ae-436a-9b67-38da0bd5b1b1",
+                            ProjectId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            SecurityStamp = "48312ec2-c0e3-430b-a4d1-92690576b91e",
                             TwoFactorEnabled = false,
                             UserName = "CitrusUser"
                         });
+                });
+
+            modelBuilder.Entity("Domain.Project", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateEnd")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateStart")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("OwnerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Projects");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

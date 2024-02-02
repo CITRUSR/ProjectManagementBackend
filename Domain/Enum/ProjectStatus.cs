@@ -2,6 +2,7 @@
 
 public enum ProjectStatus
 {
+    Created,
     Stuck,
     OnWorking,
     Done,

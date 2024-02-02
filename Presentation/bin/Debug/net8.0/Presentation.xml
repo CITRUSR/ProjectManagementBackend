@@ -4,6 +4,119 @@
         <name>Presentation</name>
     </assembly>
     <members>
+        <member name="M:Presentation.Controllers.ProjectController.GetAllProjects">
+             <summary>
+             Get all projects (Admin)
+             </summary>
+             <remarks>
+             Request type:
+            
+                 Get/GetAllProjects
+             
+             </remarks>
+             <returns>Ok</returns>
+             <response code="200">Ok</response>
+             <response code="401">User is not authorized</response>
+             <response code="403">User doesn't have the necessary rights</response>
+        </member>
+        <member name="M:Presentation.Controllers.ProjectController.GetProjectById(System.Guid)">
+             <summary>
+             Get project by id (Admin)
+             </summary>
+             <remarks>
+             Request type:
+            
+                 Get/GetProjectById?projectId=1
+             
+             </remarks>
+             <param name="projectId"></param>
+             <returns>Project</returns>
+             <response code="200">Ok</response>
+             <response code="400">Validation errors</response>
+             <response code="401">User is not authorized</response>
+             <response code="403">User doesn't have the necessary rights</response>
+             <response code="404">Project is not found</response>
+        </member>
+        <member name="M:Presentation.Controllers.ProjectController.GetProjectByUser">
+             <summary>
+             Get project by user
+             </summary>
+             <remarks>
+             Request type:
+            
+                 Get/GetProjectByUser
+             
+             </remarks>
+             <returns>Project</returns>
+             <response code="200">Ok</response>
+             <response code="401">User is not authorized</response>
+             <response code="404">Project is not found</response>
+        </member>
+        <member name="M:Presentation.Controllers.ProjectController.CreateProject(Presentation.Models.Project.CreateProjectDTO)">
+             <summary>
+             Create new project (Admin)
+             </summary>
+             <remarks>
+             Request type:
+            
+                 Post/CreateProject
+                 {
+                     "Title":"Super mario",
+                     "OwnerId":"08869D6C-E1F5-4FEC-BA5A-7C50178DC99A",
+                     "DateStart": "01/03/2024",
+                     "DateEnd": "02/03/2024",
+                 } 
+             
+             </remarks>
+             <param name="model"></param>
+             <returns>Id created project</returns>
+             <response code="200">Ok</response>
+             <response code="400">Validations error</response>
+             <response code="401">User is not authorized</response>
+             <response code="403">User doesn't have the necessary rights</response>
+        </member>
+        <member name="M:Presentation.Controllers.ProjectController.UpdateProject(Presentation.Models.Project.UpdateProjectDTO)">
+             <summary>
+             Updated project (Admin)
+             </summary>
+             <remarks>
+             RequestType:
+            
+                 Put/UpdateProject
+                 {
+                     "ProjectId":"08869D6C-E1F5-4FEC-BA5A-7C50178DC99A",
+                     "DateStart": "01/03/2024",
+                     "DateEnd": "02/03/2024",
+                     "Status":"Stuck",
+                     "OwnerId":"49BC8754-3DF8-4BA6-8710-80418DA32887",
+                     "Title":"Super mario 2",
+                 }
+             
+             </remarks>
+             <param name="model"></param>
+             <returns>Updated project</returns>
+             <response code="200">Ok</response>
+             <response code="401">User is not authorized</response>
+             <response code="403">User doesn't have the necessary rights</response>
+             <response code="404">Project is not found</response>
+        </member>
+        <member name="M:Presentation.Controllers.ProjectController.DeleteProject(System.Guid)">
+             <summary>
+             Delete project
+             </summary>
+             <remarks>
+             Request type:
+            
+                 Delete/DeleteProject?projectId=B156D35F-3506-4440-A27C-ADA151BDA7F9
+             
+             </remarks>
+             <param name="projectId"></param>
+             <returns>No Content</returns>
+             <response code="200">No content</response>
+             <response code="401">User is not authorized</response>
+             <response code="403">User doesn't have the necessary rights</response>
+             <response code="404">No content</response>
+        </member>
         <member name="M:Presentation.Controllers.UserController.LoginUser(Presentation.Models.User.LoginUserDTO)">
             <summary>
             LoginUser

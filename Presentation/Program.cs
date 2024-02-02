@@ -57,6 +57,8 @@ builder.Services.AddSwaggerGen(c =>
     c.IncludeXmlComments(filePath);
 });
 
+builder.Services.AddHttpContextAccessor();
+
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
     .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)

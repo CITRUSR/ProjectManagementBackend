@@ -4,5 +4,5 @@ namespace Domain;
 
 public class AppUser : IdentityUser
 {
-    
+    public Guid ProjectId { get; set; }
 }

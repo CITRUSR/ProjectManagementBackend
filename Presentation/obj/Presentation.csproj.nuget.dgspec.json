@@ -30,6 +30,9 @@
             "projectReferences": {
               "C:\\DocumentProg\\Projects\\f_projects\\project_management_\\ProjectManagementBackend\\Domain\\Domain.csproj": {
                 "projectPath": "C:\\DocumentProg\\Projects\\f_projects\\project_management_\\ProjectManagementBackend\\Domain\\Domain.csproj"
+              },
+              "C:\\DocumentProg\\Projects\\f_projects\\project_management_\\ProjectManagementBackend\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\DocumentProg\\Projects\\f_projects\\project_management_\\ProjectManagementBackend\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -58,7 +61,7 @@
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[8.0.1, )"
+              "version": "[8.0.0, )"
             },
             "Microsoft.Extensions.DependencyInjection.Abstractions": {
               "target": "Package",
@@ -278,7 +281,7 @@
           "dependencies": {
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[8.0.1, )"
+              "version": "[8.0.0, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",

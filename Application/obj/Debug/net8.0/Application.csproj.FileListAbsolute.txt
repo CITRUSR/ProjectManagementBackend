@@ -14,3 +14,5 @@ C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend
 C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Application\obj\Debug\net8.0\refint\Application.dll
 C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Application\obj\Debug\net8.0\Application.pdb
 C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Application\obj\Debug\net8.0\ref\Application.dll
+C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Application\bin\Debug\net8.0\Infrastructure.dll
+C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Application\bin\Debug\net8.0\Infrastructure.pdb

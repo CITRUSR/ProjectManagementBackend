@@ -4,6 +4,7 @@ namespace Domain;
 
 public class Project
 {
+    public Guid Id { get; set; }
     public string Title { get; set; }
     public Guid OwnerId { get; set; }
     public ProjectStatus Status { get; set; }
