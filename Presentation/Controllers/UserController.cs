@@ -1,5 +1,6 @@
 ﻿using Application.Auth.User.Commands.RegisterUser;
 using Application.Auth.User.Queries.LoginUser;
+using Application.Common.Exceptions;
 using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -32,10 +33,10 @@ public class UserController(IMediator mediator) : BaseController(mediator)
     /// <response code="404">Return if user not found</response>
     /// <response code="401">Return if identity error</response>
     [HttpPost]
-    [ProducesResponseType(typeof(string),200)]
-    [ProducesResponseType(typeof(IEnumerable<ValidationFailure>),400)]
-    [ProducesResponseType(typeof(string),404)]
-    [ProducesResponseType(typeof(IEnumerable<IdentityError>),401)]
+    [ProducesResponseType(typeof(string), 200)]
+    [ProducesResponseType(typeof(IEnumerable<ValidationError>), 400)]
+    [ProducesResponseType(typeof(string), 404)]
+    [ProducesResponseType(typeof(IEnumerable<IdentityError>), 401)]
     public async Task<IActionResult> LoginUser([FromBody] LoginUserDTO model)
     {
         var query = new LoginUserQuery(model.Login, model.Password);
@@ -44,7 +45,7 @@ public class UserController(IMediator mediator) : BaseController(mediator)
 
         return Ok(jwt);
     }
-    
+
     /// <summary>
     /// Registration user
     /// </summary>
@@ -62,11 +63,11 @@ public class UserController(IMediator mediator) : BaseController(mediator)
     /// <param name="model"></param>
     /// <returns>No Content</returns>
     /// <response code="200">No Content</response>
-    /// <response code="400">Return if validation exceptions</response>
-    /// <response code="401">Return if identity error</response>
+    /// <response code="400">Validation errors</response>
+    /// <response code="401">Identity error</response>
     [HttpPost]
-    [ProducesResponseType(typeof(IEnumerable<ValidationFailure>),400)]
-    [ProducesResponseType(typeof(IEnumerable<IdentityError>),401)]
+    [ProducesResponseType(typeof(IEnumerable<ValidationError>), 400)]
+    [ProducesResponseType(typeof(IEnumerable<IdentityError>), 401)]
     public async Task<IActionResult> RegisterUser([FromBody] RegisterUserDTO model)
     {
         var command = new RegisterUserCommand(model.Login, model.Password, model.ConfirmPassword);
