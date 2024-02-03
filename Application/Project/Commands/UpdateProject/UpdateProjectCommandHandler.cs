@@ -6,10 +6,10 @@ using Serilog;
 
 namespace Application.Project.Commands.UpdateProject;
 
-public class UpdateProjectCommandHandler(AppDbContext dbContext)
+public class UpdateProjectCommandHandler(IAppDbContext dbContext)
     : IRequestHandler<UpdateProjectCommand, ProjectViewModel>
 {
-    private readonly AppDbContext _dbContext = dbContext;
+    private readonly IAppDbContext _dbContext = dbContext;
 
     public async Task<ProjectViewModel> Handle(UpdateProjectCommand request, CancellationToken cancellationToken)
     {

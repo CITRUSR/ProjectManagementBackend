@@ -9,12 +9,12 @@ using Microsoft.EntityFrameworkCore;
 namespace Application.Project.Queries.GetProjectByUser;
 
 public class GetProjectByUserQueryHandler(
-    AppDbContext dbContext,
+    IAppDbContext dbContext,
     UserManager<AppUser> userManager,
     IHttpContextAccessor accessor)
     : IRequestHandler<GetProjectByUserQuery, ProjectViewModel>
 {
-    private readonly AppDbContext _dbContext = dbContext;
+    private readonly IAppDbContext _dbContext = dbContext;
     private readonly UserManager<AppUser> _userManager = userManager;
     private readonly IHttpContextAccessor _accessor = accessor;
 
@@ -41,6 +41,7 @@ public class GetProjectByUserQueryHandler(
             DateEnd = project.DateEnd,
             Title = project.Title,
             OwnerId = project.OwnerId,
+            Status = project.Status,
         };
     }
 }

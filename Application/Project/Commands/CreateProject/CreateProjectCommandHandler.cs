@@ -5,9 +5,9 @@ using Serilog;
 
 namespace Application.Project.Commands;
 
-public class CreateProjectCommandHandler(AppDbContext dbContext) : IRequestHandler<CreateProjectCommand, Guid>
+public class CreateProjectCommandHandler(IAppDbContext dbContext) : IRequestHandler<CreateProjectCommand, Guid>
 {
-    private readonly AppDbContext _dbContext = dbContext;
+    private readonly IAppDbContext _dbContext = dbContext;
 
     public async Task<Guid> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
     {

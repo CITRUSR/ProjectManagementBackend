@@ -6,9 +6,9 @@ using Serilog;
 
 namespace Application.Project.Commands.DeleteProject;
 
-public class DeleteProjectCommandHandler(AppDbContext dbContext) : IRequestHandler<DeleteProjectCommand>
+public class DeleteProjectCommandHandler(IAppDbContext dbContext) : IRequestHandler<DeleteProjectCommand>
 {
-    private readonly AppDbContext _dbContext = dbContext;
+    private readonly IAppDbContext _dbContext = dbContext;
 
     public async Task Handle(DeleteProjectCommand request, CancellationToken cancellationToken)
     {

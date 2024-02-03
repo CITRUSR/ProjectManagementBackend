@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Project.Queries.GetAllProjects;
 
-public class GetAllProjectsQueryHandler(AppDbContext dbContext)
+public class GetAllProjectsQueryHandler(IAppDbContext dbContext)
     : IRequestHandler<GetAllProjectsQuery, List<ProjectViewModel>>
 {
-    private readonly AppDbContext _dbContext = dbContext;
+    private readonly IAppDbContext _dbContext = dbContext;
 
     public async Task<List<ProjectViewModel>> Handle(GetAllProjectsQuery request, CancellationToken cancellationToken)
     {

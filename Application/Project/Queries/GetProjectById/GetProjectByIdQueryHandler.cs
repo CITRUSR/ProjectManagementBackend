@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Project.Queries.GetProjectById;
 
-public class GetProjectByIdQueryHandler(AppDbContext dbContext)
+public class GetProjectByIdQueryHandler(IAppDbContext dbContext)
     : IRequestHandler<GetProjectByIdQuery, ProjectViewModel>
 {
-    private readonly AppDbContext _dbContext = dbContext;
+    private readonly IAppDbContext _dbContext = dbContext;
 
     public async Task<ProjectViewModel> Handle(GetProjectByIdQuery request, CancellationToken cancellationToken)
     {
@@ -26,6 +26,8 @@ public class GetProjectByIdQueryHandler(AppDbContext dbContext)
             Title = project.Title,
             DateEnd = project.DateEnd,
             DateStart = project.DateStart,
+            OwnerId = project.OwnerId,
+            Status = project.Status,
         };
 
         return projectVM;
