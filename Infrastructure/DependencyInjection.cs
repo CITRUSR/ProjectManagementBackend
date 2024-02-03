@@ -11,7 +11,9 @@ public static class DependencyInjection
         var connectionStrings = configuration.GetConnectionString("ProjectManagementDB");
 
         services.AddDbContext<AppDbContext>(cfg => cfg.UseSqlServer(connectionStrings));
-        
+
+        services.AddScoped<IAppDbContext>(provider => provider.GetService<AppDbContext>());
+
         return services;
     }
 }

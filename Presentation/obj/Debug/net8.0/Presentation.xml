@@ -96,13 +96,14 @@
              <param name="model"></param>
              <returns>Updated project</returns>
              <response code="200">Ok</response>
+             <response code="400">Validation errors</response>
              <response code="401">User is not authorized</response>
              <response code="403">User doesn't have the necessary rights</response>
              <response code="404">Project is not found</response>
         </member>
         <member name="M:Presentation.Controllers.ProjectController.DeleteProject(System.Guid)">
              <summary>
-             Delete project
+             Delete project (Admin)
              </summary>
              <remarks>
              Request type:
@@ -115,7 +116,7 @@
              <response code="200">No content</response>
              <response code="401">User is not authorized</response>
              <response code="403">User doesn't have the necessary rights</response>
-             <response code="404">No content</response>
+             <response code="404">Project is not found</response>
         </member>
         <member name="M:Presentation.Controllers.UserController.LoginUser(Presentation.Models.User.LoginUserDTO)">
             <summary>
@@ -156,8 +157,8 @@
             <param name="model"></param>
             <returns>No Content</returns>
             <response code="200">No Content</response>
-            <response code="400">Return if validation exceptions</response>
-            <response code="401">Return if identity error</response>
+            <response code="400">Validation errors</response>
+            <response code="401">Identity error</response>
         </member>
     </members>
 </doc>
