@@ -2,11 +2,14 @@ using System.Reflection;
 using Application;
 using Application.Auth;
 using Domain;
+using Domain.Enum;
 using Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Converters;
 using Presentation.Middlewares;
 using Serilog;
 
@@ -21,7 +24,7 @@ builder.Services.AddSwaggerGen(c =>
     {
         Title = "ProjectManagement API",
     });
-    
+
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 
@@ -46,12 +49,11 @@ builder.Services.AddSwaggerGen(c =>
                 Scheme = "oauth2",
                 Name = "Bearer",
                 In = ParameterLocation.Header,
-
             },
             new List<string>()
         }
     });
-    
+
     var file = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var filePath = Path.Combine(AppContext.BaseDirectory, file);
     c.IncludeXmlComments(filePath);
@@ -75,7 +77,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
         var authOptions = builder.Services.BuildServiceProvider().GetService<AuthOptions>();
-        
+
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
