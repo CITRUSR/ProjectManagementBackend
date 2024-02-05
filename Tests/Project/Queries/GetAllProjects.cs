@@ -8,7 +8,7 @@ namespace Tests.Project.Queries;
 public class GetAllProjects : Context
 {
     [Fact]
-    private async Task GetAllProjects_ShouldBe_Success()
+    private async System.Threading.Tasks.Task GetAllProjects_ShouldBe_Success()
     {
         var fixture = new Fixture();
 

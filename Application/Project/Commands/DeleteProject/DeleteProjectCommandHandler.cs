@@ -10,7 +10,7 @@ public class DeleteProjectCommandHandler(IAppDbContext dbContext) : IRequestHand
 {
     private readonly IAppDbContext _dbContext = dbContext;
 
-    public async Task Handle(DeleteProjectCommand request, CancellationToken cancellationToken)
+    public async System.Threading.Tasks.Task Handle(DeleteProjectCommand request, CancellationToken cancellationToken)
     {
         var project = await _dbContext.Projects.FirstOrDefaultAsync(x => x.Id == request.ProjectId, cancellationToken);
 

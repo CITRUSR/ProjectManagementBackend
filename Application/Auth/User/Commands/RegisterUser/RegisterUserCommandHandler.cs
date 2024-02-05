@@ -14,7 +14,7 @@ public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand>
         _userManager = userManager;
     }
 
-    public async Task Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+    public async System.Threading.Tasks.Task Handle(RegisterUserCommand request, CancellationToken cancellationToken)
     {
         var user = new AppUser
         {

@@ -11,7 +11,7 @@ namespace Tests.Project;
 public class CreateProject : Context
 {
     [Fact]
-    private async Task CreateProject_ShouldBe_Success()
+    private async System.Threading.Tasks.Task CreateProject_ShouldBe_Success()
     {
         var fixture = new Fixture();
 

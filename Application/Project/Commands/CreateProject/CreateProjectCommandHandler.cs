@@ -16,7 +16,7 @@ public class CreateProjectCommandHandler(IAppDbContext dbContext) : IRequestHand
             Id = Guid.NewGuid(),
             Title = request.Title,
             OwnerId = request.OwnerId,
-            Status = ProjectStatus.Created,
+            Status = WorkStatus.Created,
             DateStart = request.DateStart,
             DateEnd = request.DateEnd,
         };

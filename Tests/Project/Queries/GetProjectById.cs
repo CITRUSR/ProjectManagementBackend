@@ -9,7 +9,7 @@ namespace Tests.Project.Queries;
 public class GetProjectById : Context
 {
     [Fact]
-    private async Task GetProjectById_ShouldBe_Success()
+    private async System.Threading.Tasks.Task GetProjectById_ShouldBe_Success()
     {
         var fixture = new Fixture();
 
@@ -25,7 +25,7 @@ public class GetProjectById : Context
     }
 
     [Fact]
-    private async Task GetProjectById_ShouldBe_NotFoundException()
+    private async System.Threading.Tasks.Task GetProjectById_ShouldBe_NotFoundException()
     {
         var fixture = new Fixture();
 
@@ -33,7 +33,7 @@ public class GetProjectById : Context
 
         var handler = new GetProjectByIdQueryHandler(DbContext);
 
-        Func<Task> act = async () => await handler.Handle(new GetProjectByIdQuery(project.Id), CancellationToken.None);
+        Func<System.Threading.Tasks.Task> act = async () => await handler.Handle(new GetProjectByIdQuery(project.Id), CancellationToken.None);
 
         await act.Should().ThrowAsync<NotFoundException>();
     }

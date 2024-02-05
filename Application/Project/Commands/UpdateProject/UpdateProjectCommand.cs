@@ -7,6 +7,6 @@ public record UpdateProjectCommand(
     Guid ProjectId,
     DateTime DateStart,
     DateTime DateEnd,
-    ProjectStatus Status,
+    WorkStatus Status,
     Guid OwnerId,
     string Title) : IRequest<ProjectViewModel>;

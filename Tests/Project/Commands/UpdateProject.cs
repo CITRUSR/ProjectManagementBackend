@@ -9,7 +9,7 @@ namespace Tests.Project;
 public class UpdateProject : Context
 {
     [Fact]
-    private async Task UpdateProject_ShouldBe_Success()
+    private async System.Threading.Tasks.Task UpdateProject_ShouldBe_Success()
     {
         var fixture = new Fixture();
 
@@ -26,14 +26,14 @@ public class UpdateProject : Context
     }
 
     [Fact]
-    private async Task UpdateProject_ShouldBe_NotFoundException()
+    private async System.Threading.Tasks.Task UpdateProject_ShouldBe_NotFoundException()
     {
         var fixture = new Fixture();
         var commandHandler = new UpdateProjectCommandHandler(DbContext);
 
         var command = fixture.Create<UpdateProjectCommand>();
         
-        Func<Task> act = async () => await commandHandler.Handle(command, CancellationToken.None);
+        Func<System.Threading.Tasks.Task> act = async () => await commandHandler.Handle(command, CancellationToken.None);
 
         await act.Should().ThrowAsync<NotFoundException>();
     }

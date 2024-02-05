@@ -13,7 +13,7 @@ namespace Tests.Project;
 public class DeleteProject : Context
 {
     [Fact]
-    private async Task DeleteProject_ShouldBe_Success()
+    private async System.Threading.Tasks.Task DeleteProject_ShouldBe_Success()
     {
         var fixture = new Fixture();
 
@@ -29,14 +29,14 @@ public class DeleteProject : Context
     }
 
     [Fact]
-    private async Task DeleteProject_ShouldBe_NotFoundException()
+    private async System.Threading.Tasks.Task DeleteProject_ShouldBe_NotFoundException()
     {
         var fixture = new Fixture();
 
         var project = fixture.Create<Domain.Project>();
 
         var handler = new DeleteProjectCommandHandler(DbContext);
-        Func<Task> act = async () => await handler.Handle(new DeleteProjectCommand(project.Id), CancellationToken.None);
+        Func<System.Threading.Tasks.Task> act = async () => await handler.Handle(new DeleteProjectCommand(project.Id), CancellationToken.None);
 
         await act.Should().ThrowAsync<NotFoundException>();
     }

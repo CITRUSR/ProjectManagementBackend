@@ -118,6 +118,138 @@
              <response code="403">User doesn't have the necessary rights</response>
              <response code="404">Project is not found</response>
         </member>
+        <member name="M:Presentation.Controllers.TaskController.GetAllTasks">
+             <summary>
+             Get all tasks from all projects (Admin)
+             </summary>
+             <remarks>
+             Request type:
+            
+                 Get/GetAllTasks
+             
+             </remarks>
+             <returns>Ok</returns>
+             <response code="200">Ok</response>
+             <response code="401">User is not authorized</response>
+             <response code="403">User doesn't have the necessary rights</response>
+        </member>
+        <member name="M:Presentation.Controllers.TaskController.GetTaskById(System.Guid)">
+             <summary>
+             Get task by id
+             </summary>
+             <remarks>
+             Request type:
+            
+                 Get/GetTaskById?id=2774BF9E-BB3F-430F-8DED-94CD839390A3
+             
+             </remarks>
+             <param name="id"></param>
+             <returns>Ok</returns>
+             <response code="200">Ok</response>
+             <response code="401">User is not authorized</response>
+             <response code="404">Task is not found</response>
+        </member>
+        <member name="M:Presentation.Controllers.TaskController.GetTasksByProject(System.Guid)">
+             <summary>
+             Get all tasks from project (Admin, ProjectManager)
+             </summary>
+             <remarks>
+             Request type:
+            
+                 Get/GetTasksByProject?projectId=B3822712-4A09-46B3-BD26-9DB66951AB95
+             
+             </remarks>
+             <param name="projectId"></param>
+             <returns>Ok</returns>
+             <response code="200">Ok</response>
+             <response code="401">User is not authorized</response>
+             <response code="403">User doesn't have the necessary rights</response>
+        </member>
+        <member name="M:Presentation.Controllers.TaskController.GetTasksByUser(System.Guid)">
+             <summary>
+             Get all tasks from user
+             </summary>
+             <remarks>
+             Request type:
+            
+                 Get/GetTasksByUser?ownerId=B71DC540-169F-4F36-A1CA-7A825877428C
+             
+             </remarks>
+             <param name="ownerId"></param>
+             <returns>Ok</returns>
+             <response code="200">Ok</response>
+             <response code="401">User is not authorized</response>
+        </member>
+        <member name="M:Presentation.Controllers.TaskController.CreateTask(Presentation.Models.Task.CreateTaskDTO)">
+             <summary>
+             Create task (Admin, ProjectManager)
+             </summary>
+             <remarks>
+             Request type:
+            
+                 Post/CreateTask
+                 {
+                     "ProjectId":"0B3CD484-B683-4DF6-98BB-377FA8764893",
+                     "OwnerId":"4AB492D5-08EB-4E0E-83DB-7CC2E8EFA514",
+                     "Title":"Add music",
+                     "Status":"Created",
+                     "Priority":"Medium",
+                     "DateStart":"01/03/2024",
+                     "DateEnd":"01/05/2024",
+                 }
+             
+             </remarks>
+             <param name="model"></param>
+             <returns>Ok</returns>
+             <response code="200">Ok</response>
+             <response code="400">Validation errors</response>
+             <response code="401">User is not authorized</response>
+             <response code="403">User doesn't have the necessary rights</response>
+        </member>
+        <member name="M:Presentation.Controllers.TaskController.UpdateTask(Presentation.Models.Task.UpdateTaskDTO)">
+             <summary>
+             Update task (Admin, ProjectManager)
+             </summary>
+             <remarks>
+             Request type:
+            
+                 Post/UpdateTask
+                 {
+                     "Id":"A945B963-88CA-43EB-8D9C-8128AE6A13E7",
+                     "OwnerId":"4AB492D5-08EB-4E0E-83DB-7CC2E8EFA514",
+                     "Title":"Add animations",
+                     "Status":"Created",
+                     "Priority":"Medium",
+                     "DateStart":"01/03/2024",
+                     "DateEnd":"01/05/2024",
+                 }
+             
+             </remarks>
+             <param name="model"></param>
+             <returns>Ok</returns>
+             <response code="200">Ok</response>
+             <response code="400">Validation errors</response>
+             <response code="401">User is not authorized</response>
+             <response code="403">User doesn't have the necessary rights</response>
+             <response code="404">Task is not found</response>
+        </member>
+        <member name="M:Presentation.Controllers.TaskController.DeleteTask(System.Guid)">
+             <summary>
+             Delete task by id (Admin, ProjectManager)
+             </summary>
+             <remarks>
+             Request type:
+            
+                 Post/DeleteTask?id=4584023F-7E8F-4256-B1DC-24E9036C3ADC
+             
+             </remarks>
+             <param name="id"></param>
+             <returns>No content</returns>
+             <response code="204">No Content</response>
+             <response code="401">User is not authorized</response>
+             <response code="403">User doesn't have the necessary rights</response>
+             <response code="404">task is not found</response>
+        </member>
         <member name="M:Presentation.Controllers.UserController.LoginUser(Presentation.Models.User.LoginUserDTO)">
             <summary>
             LoginUser

@@ -8,13 +8,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Moq;
 using Xunit;
+using Task = System.Threading.Tasks.Task;
 
 namespace Tests.Project.Queries;
 
 public class GetProjectByUser : Context
 {
     [Fact]
-    private async Task GetProjectByUser_ShouldBe_Success()
+    private async System.Threading.Tasks.Task GetProjectByUser_ShouldBe_Success()
     {
         var fixture = new Fixture();
 
@@ -48,7 +49,7 @@ public class GetProjectByUser : Context
     }
 
     [Fact]
-    private async Task GetProjectByUser_ShouldBe_IdentityException()
+    private async System.Threading.Tasks.Task GetProjectByUser_ShouldBe_IdentityException()
     {
         var userStore = new Mock<IUserStore<AppUser>>();
         var userManager =
@@ -61,13 +62,13 @@ public class GetProjectByUser : Context
 
         var handler = new GetProjectByUserQueryHandler(DbContext, userManager.Object, accessor);
 
-        Func<Task> act = async () => await handler.Handle(new GetProjectByUserQuery(), CancellationToken.None);
+        Func<System.Threading.Tasks.Task> act = async () => await handler.Handle(new GetProjectByUserQuery(), CancellationToken.None);
 
         await act.Should().ThrowAsync<IdentityException>();
     }
 
     [Fact]
-    private async Task GetProjectByUser_ShouldBe_NotFoundException()
+    private async System.Threading.Tasks.Task GetProjectByUser_ShouldBe_NotFoundException()
     {
         var fixture = new Fixture();
 
@@ -89,7 +90,7 @@ public class GetProjectByUser : Context
 
         var handler = new GetProjectByUserQueryHandler(DbContext, userManager.Object, accessor);
 
-        Func<Task> act = async () => await handler.Handle(new GetProjectByUserQuery(), CancellationToken.None);
+        Func<System.Threading.Tasks.Task> act = async () => await handler.Handle(new GetProjectByUserQuery(), CancellationToken.None);
 
         await act.Should().ThrowAsync<NotFoundException>();
     }

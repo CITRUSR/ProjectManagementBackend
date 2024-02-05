@@ -153,3 +153,7 @@ C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend
 C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Presentation\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Presentation\bin\Debug\net8.0\Presentation.xml
 C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Presentation\obj\Debug\net8.0\Presentation.xml
+C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Presentation\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Presentation\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Presentation\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+C:\DocumentProg\Projects\f_projects\project_management_\ProjectManagementBackend\Presentation\bin\Debug\net8.0\Swashbuckle.AspNetCore.Newtonsoft.dll
