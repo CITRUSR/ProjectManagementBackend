@@ -1,4 +1,5 @@
-﻿using Application.Task.Queries.GetAllTasks;
+﻿using Application.Common.Mappers;
+using Application.Task.Queries.GetAllTasks;
 using AutoFixture;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
@@ -17,7 +18,7 @@ public class GetAllTasks : Context
         await DbContext.AddRangeAsync(tasks);
         await DbContext.SaveChangesAsync();
 
-        var handler = new GetAllTasksQueryHandler(DbContext);
+        var handler = new GetAllTasksQueryHandler(DbContext, new TaskMapper());
 
         var getTasks = await handler.Handle(new GetAllTasksQuery(), CancellationToken.None);
         getTasks.Should().HaveCount(DbContext.Tasks.Count());

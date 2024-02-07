@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using Application.Common.Exceptions;
+using Application.Common.Mappers;
 using Application.Project.Queries.GetProjectByUser;
 using AutoFixture;
 using Domain;
@@ -41,7 +42,7 @@ public class GetProjectByUser : Context
         var accessor = new HttpContextAccessor();
         accessor.HttpContext = httpContext;
 
-        var handler = new GetProjectByUserQueryHandler(DbContext, userManagerMock.Object, accessor);
+        var handler = new GetProjectByUserQueryHandler(DbContext, userManagerMock.Object, accessor, new ProjectMapper());
 
         var result = await handler.Handle(new GetProjectByUserQuery(), CancellationToken.None);
 
@@ -60,7 +61,7 @@ public class GetProjectByUser : Context
         var accessor = new HttpContextAccessor();
         accessor.HttpContext = httpContext;
 
-        var handler = new GetProjectByUserQueryHandler(DbContext, userManager.Object, accessor);
+        var handler = new GetProjectByUserQueryHandler(DbContext, userManager.Object, accessor, new ProjectMapper());
 
         Func<System.Threading.Tasks.Task> act = async () => await handler.Handle(new GetProjectByUserQuery(), CancellationToken.None);
 
@@ -88,7 +89,7 @@ public class GetProjectByUser : Context
         var accessor = new HttpContextAccessor();
         accessor.HttpContext = httpContext;
 
-        var handler = new GetProjectByUserQueryHandler(DbContext, userManager.Object, accessor);
+        var handler = new GetProjectByUserQueryHandler(DbContext, userManager.Object, accessor, new ProjectMapper());
 
         Func<System.Threading.Tasks.Task> act = async () => await handler.Handle(new GetProjectByUserQuery(), CancellationToken.None);
 

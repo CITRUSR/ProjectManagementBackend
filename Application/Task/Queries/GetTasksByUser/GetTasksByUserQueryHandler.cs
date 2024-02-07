@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using Application.Common.Mappers;
+using Domain;
 using Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -8,24 +9,16 @@ using Microsoft.EntityFrameworkCore;
 namespace Application.Task.Queries.GetTasksByUser;
 
 public class GetTasksByUserQueryHandler(
-    IAppDbContext dbContext
-)
+    IAppDbContext dbContext,
+    TaskMapper mapper)
     : IRequestHandler<GetTasksByUserQuery, List<TaskViewModel>>
 {
     private readonly IAppDbContext _dbContext = dbContext;
+    private readonly TaskMapper _mapper = mapper;
 
     public async Task<List<TaskViewModel>> Handle(GetTasksByUserQuery request, CancellationToken cancellationToken)
     {
-        return _dbContext.Tasks.Where(x => x.OwnerId == request.OwnerId).Select(x => new TaskViewModel
-        {
-            Id = x.Id,
-            OwnerId = x.OwnerId,
-            ProjectId = x.ProjectId,
-            Title = x.Title,
-            DateStart = x.DateStart,
-            DateEnd = x.DateEnd,
-            Status = x.Status,
-            Priority = x.Priority,
-        }).ToList();
+        return _dbContext.Tasks.Where(x => x.OwnerId == request.OwnerId).Select(x => _mapper.Map(x))
+            .ToList();
     }
 }

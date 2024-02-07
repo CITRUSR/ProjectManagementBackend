@@ -1,4 +1,5 @@
 ﻿using Application.Common.Exceptions;
+using Application.Common.Mappers;
 using Application.Project.Commands.UpdateProject;
 using AutoFixture;
 using FluentAssertions;
@@ -17,7 +18,7 @@ public class UpdateProject : Context
         await DbContext.Projects.AddAsync(oldProject);
         await DbContext.SaveChangesAsync();
 
-        var commandHandler = new UpdateProjectCommandHandler(DbContext);
+        var commandHandler = new UpdateProjectCommandHandler(DbContext, new ProjectMapper());
 
         var command = fixture.Build<UpdateProjectCommand>().With(x => x.ProjectId, oldProject.Id).Create();
 
@@ -29,7 +30,7 @@ public class UpdateProject : Context
     private async System.Threading.Tasks.Task UpdateProject_ShouldBe_NotFoundException()
     {
         var fixture = new Fixture();
-        var commandHandler = new UpdateProjectCommandHandler(DbContext);
+        var commandHandler = new UpdateProjectCommandHandler(DbContext, new ProjectMapper());
 
         var command = fixture.Create<UpdateProjectCommand>();
         

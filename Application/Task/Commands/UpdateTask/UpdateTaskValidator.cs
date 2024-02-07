@@ -8,8 +8,6 @@ public class UpdateTaskValidator : AbstractValidator<UpdateTaskCommand>
     public UpdateTaskValidator()
     {
         RuleFor(x => x.OwnerId).NotEmpty();
-        RuleFor(x => x.Status).NotEmpty();
-        RuleFor(x => x.Priority).NotEmpty();
         RuleFor(x => x.Title).NotEmpty();
         RuleFor(x => x.DateStart).NotEmpty();
         RuleFor(x => x.DateEnd).NotEmpty();

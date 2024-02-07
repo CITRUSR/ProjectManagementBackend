@@ -1,13 +1,15 @@
 ﻿using Application.Common.Exceptions;
+using Application.Common.Mappers;
 using Infrastructure;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Task.Commands.UpdateTask;
 
-public class UpdateTaskCommandHandler(IAppDbContext dbContext) : IRequestHandler<UpdateTaskCommand, TaskViewModel>
+public class UpdateTaskCommandHandler(IAppDbContext dbContext, TaskMapper mapper) : IRequestHandler<UpdateTaskCommand, TaskViewModel>
 {
     private readonly IAppDbContext _dbContext = dbContext;
+    private readonly TaskMapper _mapper = mapper;
 
     public async Task<TaskViewModel> Handle(UpdateTaskCommand request, CancellationToken cancellationToken)
     {
@@ -27,16 +29,6 @@ public class UpdateTaskCommandHandler(IAppDbContext dbContext) : IRequestHandler
 
         await _dbContext.SaveChangesAsync(cancellationToken);
 
-        return new TaskViewModel
-        {
-            Id = task.Id,
-            OwnerId = task.OwnerId,
-            ProjectId = task.ProjectId,
-            Priority = task.Priority,
-            Status = task.Status,
-            DateStart = task.DateStart,
-            DateEnd = task.DateEnd,
-            Title = task.Title,
-        };
+        return _mapper.Map(task);
     }
 }

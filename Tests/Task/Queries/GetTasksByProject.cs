@@ -1,4 +1,5 @@
-﻿using Application.Task.Queries.GetTasksByProject;
+﻿using Application.Common.Mappers;
+using Application.Task.Queries.GetTasksByProject;
 using AutoFixture;
 using FluentAssertions;
 using Xunit;
@@ -19,7 +20,7 @@ public class GetTasksByProject : Context
         await DbContext.SaveChangesAsync();
 
         var query = new GetTasksByProjectQuery(projectId);
-        var handler = new GetTasksByProjectQueryHandler(DbContext);
+        var handler = new GetTasksByProjectQueryHandler(DbContext, new TaskMapper());
 
         var tasksResult = await handler.Handle(query, CancellationToken.None);
         tasksResult.Should().HaveCount(DbContext.Tasks.Where(x => x.ProjectId == projectId).Count());

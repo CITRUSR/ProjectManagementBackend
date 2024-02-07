@@ -1,14 +1,16 @@
 ﻿using Application.Common.Exceptions;
+using Application.Common.Mappers;
 using Infrastructure;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Project.Queries.GetProjectById;
 
-public class GetProjectByIdQueryHandler(IAppDbContext dbContext)
+public class GetProjectByIdQueryHandler(IAppDbContext dbContext, ProjectMapper mapper)
     : IRequestHandler<GetProjectByIdQuery, ProjectViewModel>
 {
     private readonly IAppDbContext _dbContext = dbContext;
+    private readonly ProjectMapper _mapper = mapper;
 
     public async Task<ProjectViewModel> Handle(GetProjectByIdQuery request, CancellationToken cancellationToken)
     {
@@ -20,16 +22,6 @@ public class GetProjectByIdQueryHandler(IAppDbContext dbContext)
             throw new NotFoundException($"Project with id: {request.ProjectId} not found");
         }
 
-        ProjectViewModel projectVM = new ProjectViewModel
-        {
-            Id = project.Id,
-            Title = project.Title,
-            DateEnd = project.DateEnd,
-            DateStart = project.DateStart,
-            OwnerId = project.OwnerId,
-            Status = project.Status,
-        };
-
-        return projectVM;
+        return _mapper.Map(project);
     }
 }

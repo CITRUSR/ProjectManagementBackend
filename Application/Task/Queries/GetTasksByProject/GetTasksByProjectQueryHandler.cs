@@ -1,26 +1,19 @@
-﻿using Infrastructure;
+﻿using Application.Common.Mappers;
+using Infrastructure;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Task.Queries.GetTasksByProject;
 
-public class GetTasksByProjectQueryHandler(IAppDbContext dbContext)
+public class GetTasksByProjectQueryHandler(IAppDbContext dbContext, TaskMapper mapper)
     : IRequestHandler<GetTasksByProjectQuery, List<TaskViewModel>>
 {
     private readonly IAppDbContext _dbContext = dbContext;
+    private readonly TaskMapper _mapper = mapper;
 
     public Task<List<TaskViewModel>> Handle(GetTasksByProjectQuery request, CancellationToken cancellationToken)
     {
-        return _dbContext.Tasks.Where(x => x.ProjectId == request.ProjectId).Select(x => new TaskViewModel
-        {
-            Id = x.Id,
-            OwnerId = x.OwnerId,
-            ProjectId = x.ProjectId,
-            Title = x.Title,
-            Priority = x.Priority,
-            Status = x.Status,
-            DateStart = x.DateStart,
-            DateEnd = x.DateEnd,
-        }).ToListAsync(cancellationToken);
+        return _dbContext.Tasks.Where(x => x.ProjectId == request.ProjectId).Select(x => _mapper.Map(x))
+            .ToListAsync(cancellationToken);
     }
 }

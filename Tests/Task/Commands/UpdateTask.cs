@@ -1,4 +1,5 @@
 ﻿using Application.Common.Exceptions;
+using Application.Common.Mappers;
 using Application.Task.Commands.UpdateTask;
 using AutoFixture;
 using FluentAssertions;
@@ -18,7 +19,7 @@ public class UpdateTask : Context
         await DbContext.SaveChangesAsync();
 
         var command = fixture.Build<UpdateTaskCommand>().With(x => x.Id, task.Id).Create();
-        var handler = new UpdateTaskCommandHandler(DbContext);
+        var handler = new UpdateTaskCommandHandler(DbContext, new TaskMapper());
         var newTask = await handler.Handle(command, CancellationToken.None);
 
         DbContext.Tasks.FirstOrDefault(x => x.Id == task.Id).Should().BeEquivalentTo(newTask);
@@ -30,7 +31,7 @@ public class UpdateTask : Context
         var fixture = new Fixture();
 
         var command = fixture.Create<UpdateTaskCommand>();
-        var handler = new UpdateTaskCommandHandler(DbContext);
+        var handler = new UpdateTaskCommandHandler(DbContext, new TaskMapper());
 
         Func<System.Threading.Tasks.Task> act = async () => await handler.Handle(command, CancellationToken.None);
 

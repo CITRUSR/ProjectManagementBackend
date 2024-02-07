@@ -1,4 +1,5 @@
 ﻿using Application.Common.Exceptions;
+using Application.Common.Mappers;
 using Application.Task.Queries.GetTaskById;
 using AutoFixture;
 using FluentAssertions;
@@ -18,7 +19,7 @@ public class GetTaskById : Context
         await DbContext.SaveChangesAsync();
 
         var query = new GetTaskByIdQuery(task.Id);
-        var handler = new GetTaskByIdQueryHandler(DbContext);
+        var handler = new GetTaskByIdQueryHandler(DbContext, new TaskMapper());
 
         var taskResult = await handler.Handle(query, CancellationToken.None);
         taskResult.Should().BeEquivalentTo(DbContext.Tasks.FirstOrDefault(x => x.Id == task.Id));
@@ -30,7 +31,7 @@ public class GetTaskById : Context
         var fixture = new Fixture();
 
         var query = fixture.Create<GetTaskByIdQuery>();
-        var handler = new GetTaskByIdQueryHandler(DbContext);
+        var handler = new GetTaskByIdQueryHandler(DbContext, new TaskMapper());
 
         Func<System.Threading.Tasks.Task> act = async () => await handler.Handle(query, CancellationToken.None);
 

@@ -1,4 +1,5 @@
-﻿using Application.Project.Queries.GetAllProjects;
+﻿using Application.Common.Mappers;
+using Application.Project.Queries.GetAllProjects;
 using AutoFixture;
 using FluentAssertions;
 using Xunit;
@@ -16,7 +17,7 @@ public class GetAllProjects : Context
         await DbContext.AddRangeAsync(projectsExpected);
         await DbContext.SaveChangesAsync();
 
-        var handler = new GetAllProjectsQueryHandler(DbContext);
+        var handler = new GetAllProjectsQueryHandler(DbContext, new ProjectMapper());
 
         var projectsResult = await handler.Handle(new GetAllProjectsQuery(), CancellationToken.None);
 

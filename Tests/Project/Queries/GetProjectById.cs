@@ -1,4 +1,5 @@
 ﻿using Application.Common.Exceptions;
+using Application.Common.Mappers;
 using Application.Project.Queries.GetProjectById;
 using AutoFixture;
 using FluentAssertions;
@@ -17,7 +18,7 @@ public class GetProjectById : Context
         await DbContext.AddAsync(project);
         await DbContext.SaveChangesAsync();
 
-        var handler = new GetProjectByIdQueryHandler(DbContext);
+        var handler = new GetProjectByIdQueryHandler(DbContext, new ProjectMapper());
 
         var projectResult = await handler.Handle(new GetProjectByIdQuery(project.Id), CancellationToken.None);
         
@@ -31,7 +32,7 @@ public class GetProjectById : Context
 
         var project = fixture.Create<Domain.Project>();
 
-        var handler = new GetProjectByIdQueryHandler(DbContext);
+        var handler = new GetProjectByIdQueryHandler(DbContext, new ProjectMapper());
 
         Func<System.Threading.Tasks.Task> act = async () => await handler.Handle(new GetProjectByIdQuery(project.Id), CancellationToken.None);
 

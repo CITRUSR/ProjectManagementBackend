@@ -1,4 +1,5 @@
-﻿using Application.Task.Queries.GetTasksByUser;
+﻿using Application.Common.Mappers;
+using Application.Task.Queries.GetTasksByUser;
 using AutoFixture;
 using FluentAssertions;
 using Xunit;
@@ -19,7 +20,7 @@ public class GetTasksByUser : Context
         await DbContext.SaveChangesAsync();
 
         var query = new GetTasksByUserQuery(ownerId);
-        var handler = new GetTasksByUserQueryHandler(DbContext);
+        var handler = new GetTasksByUserQueryHandler(DbContext, new TaskMapper());
 
         var tasksResult = await handler.Handle(query, CancellationToken.None);
         tasksResult.Should().HaveCount(DbContext.Tasks.Where(x => x.OwnerId == ownerId).Count());

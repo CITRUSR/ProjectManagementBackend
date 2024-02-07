@@ -12,7 +12,8 @@ public class LoginUserQueryHandler : IRequestHandler<LoginUserQuery, string>
     private readonly UserManager<AppUser> _userManager;
     private readonly JWTGenerator _jwtGenerator;
 
-    public LoginUserQueryHandler(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, JWTGenerator jwtGenerator)
+    public LoginUserQueryHandler(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager,
+        JWTGenerator jwtGenerator)
     {
         _signInManager = signInManager;
         _userManager = userManager;
@@ -27,14 +28,14 @@ public class LoginUserQueryHandler : IRequestHandler<LoginUserQuery, string>
         {
             throw new NotFoundException("User not found");
         }
-        
-        var result = await _signInManager.PasswordSignInAsync(user, request.Password,false,false);
+
+        var result = await _signInManager.PasswordSignInAsync(user, request.Password, false, false);
 
         if (!result.Succeeded)
         {
             throw new IdentityException("Login or password is wrong");
         }
-        
+
         return await _jwtGenerator.Generate(user);
     }
 }

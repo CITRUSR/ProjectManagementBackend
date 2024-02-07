@@ -1,13 +1,16 @@
 ﻿using Application.Common.Exceptions;
+using Application.Common.Mappers;
 using Infrastructure;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Task.Queries.GetTaskById;
 
-public class GetTaskByIdQueryHandler(IAppDbContext dbContext) : IRequestHandler<GetTaskByIdQuery, TaskViewModel>
+public class GetTaskByIdQueryHandler(IAppDbContext dbContext, TaskMapper mapper)
+    : IRequestHandler<GetTaskByIdQuery, TaskViewModel>
 {
     private readonly IAppDbContext _dbContext = dbContext;
+    private readonly TaskMapper _mapper = mapper;
 
     public async Task<TaskViewModel> Handle(GetTaskByIdQuery request, CancellationToken cancellationToken)
     {
@@ -18,16 +21,6 @@ public class GetTaskByIdQueryHandler(IAppDbContext dbContext) : IRequestHandler<
             throw new NotFoundException($"Task with id:{request.Id} is not found");
         }
 
-        return new TaskViewModel
-        {
-            Title = task.Title,
-            Status = task.Status,
-            ProjectId = task.ProjectId,
-            Id = task.Id,
-            Priority = task.Priority,
-            DateStart = task.DateStart,
-            DateEnd = task.DateEnd,
-            OwnerId = task.OwnerId,
-        };
+        return _mapper.Map(task);
     }
 }

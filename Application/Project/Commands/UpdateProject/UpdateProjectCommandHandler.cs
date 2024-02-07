@@ -1,4 +1,5 @@
 ﻿using Application.Common.Exceptions;
+using Application.Common.Mappers;
 using Infrastructure;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -6,10 +7,11 @@ using Serilog;
 
 namespace Application.Project.Commands.UpdateProject;
 
-public class UpdateProjectCommandHandler(IAppDbContext dbContext)
+public class UpdateProjectCommandHandler(IAppDbContext dbContext, ProjectMapper mapper)
     : IRequestHandler<UpdateProjectCommand, ProjectViewModel>
 {
     private readonly IAppDbContext _dbContext = dbContext;
+    private readonly ProjectMapper _mapper = mapper;
 
     public async Task<ProjectViewModel> Handle(UpdateProjectCommand request, CancellationToken cancellationToken)
     {
@@ -33,14 +35,6 @@ public class UpdateProjectCommandHandler(IAppDbContext dbContext)
         Log.Information($"The project with id:{request.ProjectId} is updated" + "{@OldProject} to {@NewProject}",
             oldProject, project);
 
-        return new ProjectViewModel
-        {
-            Id = project.Id,
-            DateStart = project.DateStart,
-            DateEnd = project.DateEnd,
-            OwnerId = project.OwnerId,
-            Status = project.Status,
-            Title = project.Title,
-        };
+        return _mapper.Map(project);
     }
 }

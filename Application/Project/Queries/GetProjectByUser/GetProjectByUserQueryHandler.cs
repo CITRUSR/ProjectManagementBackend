@@ -1,4 +1,5 @@
 ﻿using Application.Common.Exceptions;
+using Application.Common.Mappers;
 using Domain;
 using Infrastructure;
 using MediatR;
@@ -11,12 +12,14 @@ namespace Application.Project.Queries.GetProjectByUser;
 public class GetProjectByUserQueryHandler(
     IAppDbContext dbContext,
     UserManager<AppUser> userManager,
-    IHttpContextAccessor accessor)
+    IHttpContextAccessor accessor,
+    ProjectMapper mapper)
     : IRequestHandler<GetProjectByUserQuery, ProjectViewModel>
 {
     private readonly IAppDbContext _dbContext = dbContext;
     private readonly UserManager<AppUser> _userManager = userManager;
     private readonly IHttpContextAccessor _accessor = accessor;
+    private readonly ProjectMapper _mapper = mapper;
 
     public async Task<ProjectViewModel> Handle(GetProjectByUserQuery request, CancellationToken cancellationToken)
     {
@@ -34,14 +37,7 @@ public class GetProjectByUserQueryHandler(
             throw new NotFoundException($"The user with the id:{user.Id} doesn't have a project");
         }
 
-        return new ProjectViewModel
-        {
-            Id = project.Id,
-            DateStart = project.DateStart,
-            DateEnd = project.DateEnd,
-            Title = project.Title,
-            OwnerId = project.OwnerId,
-            Status = project.Status,
-        };
+
+        return _mapper.Map(project);
     }
 }
