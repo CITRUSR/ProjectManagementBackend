@@ -1,4 +1,5 @@
 ﻿using Application.Common.Exceptions;
+using Application.Common.Mappers;
 using Application.Project;
 using Application.Project.Commands;
 using Application.Project.Commands.DeleteProject;
@@ -15,7 +16,7 @@ namespace Presentation.Controllers;
 
 [ApiController]
 [Route("api/[controller]/[action]")]
-public class ProjectController(IMediator mediator) : BaseController(mediator)
+public class ProjectController(IMediator mediator, IConfiguration configuration) : BaseController(mediator)
 {
     private readonly IMediator _mediator = mediator;
 
@@ -32,8 +33,8 @@ public class ProjectController(IMediator mediator) : BaseController(mediator)
     /// <response code="200">Ok</response>
     /// <response code="401">User is not authorized</response>
     /// <response code="403">User doesn't have the necessary rights</response>
-    [HttpGet]
     [Authorize(Roles = "Admin")]
+    [HttpGet]
     [ProducesResponseType(typeof(List<ProjectViewModel>), 200)]
     public async Task<IActionResult> GetAllProjects()
     {
@@ -88,7 +89,7 @@ public class ProjectController(IMediator mediator) : BaseController(mediator)
     /// <response code="401">User is not authorized</response>
     /// <response code="404">Project is not found</response>
     [HttpGet]
-    [Authorize]
+    [Authorize(Roles = "Admin,ProjectManager,User")]
     [ProducesResponseType(typeof(ProjectViewModel), 200)]
     [ProducesResponseType(typeof(string), 404)]
     public async Task<IActionResult> GetProjectByUser()

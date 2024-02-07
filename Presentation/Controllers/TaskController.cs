@@ -60,7 +60,7 @@ public class TaskController(IMediator mediator) : BaseController(mediator)
     /// <response code="401">User is not authorized</response>
     /// <response code="404">Task is not found</response>
     [HttpGet]
-    [Authorize]
+    [Authorize(Roles = "Admin,ProjectManager,User")]
     [ProducesResponseType(typeof(TaskViewModel), 200)]
     [ProducesResponseType(typeof(string), 404)]
     public async Task<IActionResult> GetTaskById(Guid id)
@@ -112,7 +112,7 @@ public class TaskController(IMediator mediator) : BaseController(mediator)
     /// <response code="200">Ok</response>
     /// <response code="401">User is not authorized</response>
     [HttpGet]
-    [Authorize]
+    [Authorize(Roles = "Admin,ProjectManager,User")]
     [ProducesResponseType(typeof(List<TaskViewModel>), 200)]
     public async Task<IActionResult> GetTasksByUser(Guid ownerId)
     {
@@ -167,7 +167,7 @@ public class TaskController(IMediator mediator) : BaseController(mediator)
     /// <remarks>
     /// Request type:
     ///
-    ///     Post/UpdateTask
+    ///     Put/UpdateTask
     ///     {
     ///         "Id":"A945B963-88CA-43EB-8D9C-8128AE6A13E7",
     ///         "OwnerId":"4AB492D5-08EB-4E0E-83DB-7CC2E8EFA514",
@@ -186,7 +186,7 @@ public class TaskController(IMediator mediator) : BaseController(mediator)
     /// <response code="401">User is not authorized</response>
     /// <response code="403">User doesn't have the necessary rights</response>
     /// <response code="404">Task is not found</response>
-    [HttpPost]
+    [HttpPut]
     [Authorize(Roles = "Admin,ProjectManager")]
     [ProducesResponseType(typeof(TaskViewModel), 200)]
     [ProducesResponseType(typeof(IEnumerable<ValidationError>), 400)]
@@ -207,7 +207,7 @@ public class TaskController(IMediator mediator) : BaseController(mediator)
     /// <remarks>
     /// Request type:
     ///
-    ///     Post/DeleteTask?id=4584023F-7E8F-4256-B1DC-24E9036C3ADC
+    ///     Delete/DeleteTask?id=4584023F-7E8F-4256-B1DC-24E9036C3ADC
     /// 
     /// </remarks>
     /// <param name="id"></param>
@@ -216,7 +216,7 @@ public class TaskController(IMediator mediator) : BaseController(mediator)
     /// <response code="401">User is not authorized</response>
     /// <response code="403">User doesn't have the necessary rights</response>
     /// <response code="404">task is not found</response>
-    [HttpPost]
+    [HttpDelete]
     [Authorize(Roles = "Admin,ProjectManager")]
     [ProducesResponseType(typeof(string), 404)]
     public async Task<IActionResult> DeleteTask(Guid id)
