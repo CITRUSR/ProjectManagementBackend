@@ -1,1 +1,7 @@
 ﻿/Presentation/logs/
+bin/
+obj/
+*.dll
+*.pdb
+*.exe
+*.xml
