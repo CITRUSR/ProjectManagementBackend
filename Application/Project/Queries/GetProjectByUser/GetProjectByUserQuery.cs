@@ -2,4 +2,4 @@
 
 namespace Application.Project.Queries.GetProjectByUser;
 
-public record GetProjectByUserQuery() : IRequest<ProjectViewModel>;
+public record GetProjectByUserQuery(Guid UserId) : IRequest<ProjectViewModel>;

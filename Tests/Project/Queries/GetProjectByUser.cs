@@ -20,52 +20,17 @@ public class GetProjectByUser : Context
     {
         var fixture = new Fixture();
 
-        var userStoreMock = new Mock<IUserStore<AppUser>>();
-        var userManagerMock =
-            new Mock<UserManager<AppUser>>(userStoreMock.Object, null, null, null, null, null, null, null, null);
+        var userId = Guid.NewGuid();
 
-        var appUser = fixture.Create<AppUser>();
-
-        var project = fixture.Build<Domain.Project>().With(x => x.Id, appUser.ProjectId).Create();
+        var project = fixture.Build<Domain.Project>().With(x => x.OwnerId, userId).Create();
         await DbContext.AddAsync(project);
         await DbContext.SaveChangesAsync();
 
-        userManagerMock.Setup(x => x.GetUserAsync(It.IsAny<ClaimsPrincipal>())).ReturnsAsync(appUser);
+        var handler = new GetProjectByUserQueryHandler(DbContext, new ProjectMapper());
 
-        HttpContext httpContext = new DefaultHttpContext();
+        var result = await handler.Handle(new GetProjectByUserQuery(userId), CancellationToken.None);
 
-        httpContext.User = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
-        {
-            new Claim(ClaimTypes.Name, appUser.UserName),
-        }, "Mock"));
-
-        var accessor = new HttpContextAccessor();
-        accessor.HttpContext = httpContext;
-
-        var handler = new GetProjectByUserQueryHandler(DbContext, userManagerMock.Object, accessor, new ProjectMapper());
-
-        var result = await handler.Handle(new GetProjectByUserQuery(), CancellationToken.None);
-
-        DbContext.Projects.FirstOrDefault(x => x.Id == appUser.ProjectId).Should().BeEquivalentTo(result);
-    }
-
-    [Fact]
-    private async System.Threading.Tasks.Task GetProjectByUser_ShouldBe_IdentityException()
-    {
-        var userStore = new Mock<IUserStore<AppUser>>();
-        var userManager =
-            new Mock<UserManager<AppUser>>(userStore.Object, null, null, null, null, null, null, null, null);
-
-        var httpContext = new DefaultHttpContext();
-
-        var accessor = new HttpContextAccessor();
-        accessor.HttpContext = httpContext;
-
-        var handler = new GetProjectByUserQueryHandler(DbContext, userManager.Object, accessor, new ProjectMapper());
-
-        Func<System.Threading.Tasks.Task> act = async () => await handler.Handle(new GetProjectByUserQuery(), CancellationToken.None);
-
-        await act.Should().ThrowAsync<IdentityException>();
+        DbContext.Projects.FirstOrDefault(x => x.OwnerId == userId).Should().BeEquivalentTo(result);
     }
 
     [Fact]
@@ -73,25 +38,10 @@ public class GetProjectByUser : Context
     {
         var fixture = new Fixture();
 
-        var userStore = new Mock<IUserStore<AppUser>>();
-        var userManager =
-            new Mock<UserManager<AppUser>>(userStore.Object, null, null, null, null, null, null, null, null);
+        var handler = new GetProjectByUserQueryHandler(DbContext, new ProjectMapper());
 
-        var appUser = fixture.Create<AppUser>();
-
-        userManager.Setup(x => x.GetUserAsync(It.IsAny<ClaimsPrincipal>())).ReturnsAsync(appUser);
-
-        var httpContext = new DefaultHttpContext();
-        httpContext.User = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
-        {
-            new Claim(ClaimTypes.Name, appUser.UserName)
-        }, "Mock"));
-        var accessor = new HttpContextAccessor();
-        accessor.HttpContext = httpContext;
-
-        var handler = new GetProjectByUserQueryHandler(DbContext, userManager.Object, accessor, new ProjectMapper());
-
-        Func<System.Threading.Tasks.Task> act = async () => await handler.Handle(new GetProjectByUserQuery(), CancellationToken.None);
+        Func<System.Threading.Tasks.Task> act = async () =>
+            await handler.Handle(new GetProjectByUserQuery(Guid.NewGuid()), CancellationToken.None);
 
         await act.Should().ThrowAsync<NotFoundException>();
     }
