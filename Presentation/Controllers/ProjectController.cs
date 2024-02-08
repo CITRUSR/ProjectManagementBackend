@@ -92,9 +92,9 @@ public class ProjectController(IMediator mediator, IConfiguration configuration)
     [Authorize(Roles = "Admin,ProjectManager,User")]
     [ProducesResponseType(typeof(ProjectViewModel), 200)]
     [ProducesResponseType(typeof(string), 404)]
-    public async Task<IActionResult> GetProjectByUser()
+    public async Task<IActionResult> GetProjectByUser(Guid userId)
     {
-        var query = new GetProjectByUserQuery();
+        var query = new GetProjectByUserQuery(userId);
 
         var project = await _mediator.Send(query);
 

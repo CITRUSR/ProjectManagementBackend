@@ -98,52 +98,52 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1",
+                            Id = "2B0542C9-472E-4C6D-BD50-02611A0738FE",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4a70eb09-141b-4889-ba66-b2d708878c3a",
+                            ConcurrencyStamp = "dbcecc10-b28e-45a3-a15d-73dfd62f1c64",
                             EmailConfirmed = false,
-                            IsConfirmedProfile = false,
+                            IsConfirmedProfile = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "CITRUSADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEARTqCfKKx8dH3InHxAmGm12RtzOh+B2jqZYNwcCgNDh/jlzUmzgxlkEx75sJTrcrQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOl+YQXQp1l3V8K0DaRD2tSDdW0oezq/XqRoZhgRZP3wRy4ivMzXMrJPTUR5HMKh/Q==",
                             PhoneNumberConfirmed = false,
                             Position = 0,
                             ProjectId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            SecurityStamp = "c286fffa-d290-4afb-a47a-29514082ccac",
+                            SecurityStamp = "e96faaf5-a3c9-4b37-8dd3-f77f8563653b",
                             TwoFactorEnabled = false,
                             UserName = "CitrusAdmin"
                         },
                         new
                         {
-                            Id = "2",
+                            Id = "AEC05A0F-B6AA-4EE6-AE54-5761C7EF79C9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1031c759-fc5d-436a-8ae1-389c44a97d8e",
+                            ConcurrencyStamp = "5efd4d12-3a7e-4333-ace3-8fe33a6908ee",
                             EmailConfirmed = false,
-                            IsConfirmedProfile = false,
+                            IsConfirmedProfile = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "CITRUSPROJECTMANAGER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEK9aaNeJ5v4hMfqZHGZgb9uhzcwidTBDhmbWiieDYhUToJMROhsRHEYVAbxjpaYkhQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIqrWS+j5OvFkchbAXCrqnIRspzKCKz//SAaPC8LilktP0hwsY6nBJuXaMc/XNqfmw==",
                             PhoneNumberConfirmed = false,
                             Position = 0,
                             ProjectId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            SecurityStamp = "08ddfff6-2a5f-4cc0-8ef2-50aedc2e7ec5",
+                            SecurityStamp = "d23624e8-0843-4cb8-82ba-3f05f329a65c",
                             TwoFactorEnabled = false,
                             UserName = "CitrusProjectManager"
                         },
                         new
                         {
-                            Id = "3",
+                            Id = "E21345E0-0C23-4043-AFFA-190E960F45DB",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "17b607af-9cfa-47a9-9eba-931513d0df37",
+                            ConcurrencyStamp = "da4320cb-fdc1-4f40-b720-944fb10bef76",
                             EmailConfirmed = false,
-                            IsConfirmedProfile = false,
+                            IsConfirmedProfile = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "CITRUSUSER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIEXUN6ZaR3xUL0KxmgorEFlf8e/OcelKbsgDgOIAns/eyPvPw07CKRAfeD30xBCTQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDJJjZR61z40w52uc5A15Y7zA5hV5l1lkX48j2/lHU4SnTpVaz97BOF/oFxDMclu4A==",
                             PhoneNumberConfirmed = false,
                             Position = 0,
                             ProjectId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            SecurityStamp = "5a0b5930-8eaf-4a3f-bd08-de467bab649a",
+                            SecurityStamp = "169c5613-00ba-44d4-bb84-40f5d77209b2",
                             TwoFactorEnabled = false,
                             UserName = "CitrusUser"
                         });
@@ -345,17 +345,17 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "1",
+                            UserId = "2B0542C9-472E-4C6D-BD50-02611A0738FE",
                             RoleId = "1"
                         },
                         new
                         {
-                            UserId = "2",
+                            UserId = "AEC05A0F-B6AA-4EE6-AE54-5761C7EF79C9",
                             RoleId = "2"
                         },
                         new
                         {
-                            UserId = "3",
+                            UserId = "E21345E0-0C23-4043-AFFA-190E960F45DB",
                             RoleId = "3"
                         });
                 });
