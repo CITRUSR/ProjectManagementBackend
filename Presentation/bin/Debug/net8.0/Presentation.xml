@@ -213,7 +213,7 @@
              <remarks>
              Request type:
             
-                 Post/UpdateTask
+                 Put/UpdateTask
                  {
                      "Id":"A945B963-88CA-43EB-8D9C-8128AE6A13E7",
                      "OwnerId":"4AB492D5-08EB-4E0E-83DB-7CC2E8EFA514",
@@ -240,7 +240,7 @@
              <remarks>
              Request type:
             
-                 Post/DeleteTask?id=4584023F-7E8F-4256-B1DC-24E9036C3ADC
+                 Delete/DeleteTask?id=4584023F-7E8F-4256-B1DC-24E9036C3ADC
              
              </remarks>
              <param name="id"></param>
@@ -268,7 +268,7 @@
             <returns>Return jwt token</returns>
             <response code="200">Return jwt token</response>
             <response code="400">Return validation exceptions</response>
-            <response code="404">Return if user not found</response>
+            <response code="404">Return if user not found</response>♦
             <response code="401">Return if identity error</response>
         </member>
         <member name="M:Presentation.Controllers.UserController.RegisterUser(Presentation.Models.User.RegisterUserDTO)">
@@ -291,6 +291,43 @@
             <response code="200">No Content</response>
             <response code="400">Validation errors</response>
             <response code="401">Identity error</response>
+        </member>
+        <member name="M:Presentation.Controllers.UserController.RegisterConfirmUser(Presentation.Models.User.RegisterConfrimUserDTO)">
+             <summary>
+             Confirm the registration request (Admin)
+             </summary>
+             <remarks>
+             Request type:
+            
+                 Post/RegisterConfirmUser
+                 {
+                     "Id":"443697EF-7BCE-4118-B4F6-68A6AF477683"
+                     "Position":"It"
+                 }
+             
+             </remarks>
+             <param name="model"></param>
+             <returns>Ok</returns>
+             <response code="200">Ok</response>
+             <response code="400">Validations error</response>
+             <response code="401">User is not authorized</response>
+             <response code="403">User doesn't have the necessary rights</response>
+             <response code="404">User not found</response>
+        </member>
+        <member name="M:Presentation.Controllers.UserController.GetAllUsers">
+             <summary>
+             Get all users (Admin)
+             </summary>
+             <remarks>
+             Request type:
+            
+                 Get/GetAllUsers
+             
+             </remarks>
+             <returns>Ok</returns>
+             <response code="200">Ok</response>
+             <response code="401">User is not authorized</response>
+             <response code="403">User doesn't have the necessary rights</response>
         </member>
     </members>
 </doc>

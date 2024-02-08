@@ -54,7 +54,6 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
