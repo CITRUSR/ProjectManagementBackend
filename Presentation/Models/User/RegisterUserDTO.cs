@@ -1,3 +1,5 @@
-﻿namespace Presentation.Models.User;
+﻿using Domain.Enum;
 
-public record RegisterUserDTO(string Login, string Password, string ConfirmPassword);
+namespace Presentation.Models.User;
+
+public record RegisterUserDTO(string Login, Position Position, string Password, string ConfirmPassword);

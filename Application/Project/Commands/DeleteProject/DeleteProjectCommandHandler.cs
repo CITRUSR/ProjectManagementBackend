@@ -6,11 +6,12 @@ using Serilog;
 
 namespace Application.Project.Commands.DeleteProject;
 
-public class DeleteProjectCommandHandler(IAppDbContext dbContext) : IRequestHandler<DeleteProjectCommand>
+public class DeleteProjectCommandHandler(IAppDbContext dbContext) : IRequestHandler<DeleteProjectCommand, Unit>
 {
     private readonly IAppDbContext _dbContext = dbContext;
 
-    public async System.Threading.Tasks.Task Handle(DeleteProjectCommand request, CancellationToken cancellationToken)
+    public async System.Threading.Tasks.Task<Unit> Handle(DeleteProjectCommand request,
+        CancellationToken cancellationToken)
     {
         var project = await _dbContext.Projects.FirstOrDefaultAsync(x => x.Id == request.ProjectId, cancellationToken);
 
@@ -24,5 +25,7 @@ public class DeleteProjectCommandHandler(IAppDbContext dbContext) : IRequestHand
         Log.Information($"The project with id:{request.ProjectId} is deleted");
 
         await _dbContext.SaveChangesAsync(cancellationToken);
+
+        return Unit.Value;
     }
 }

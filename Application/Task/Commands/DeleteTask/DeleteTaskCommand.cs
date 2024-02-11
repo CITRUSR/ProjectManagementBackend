@@ -2,4 +2,4 @@
 
 namespace Application.Task.Commands.DeleteTask;
 
-public record DeleteTaskCommand(Guid Id) : IRequest;
+public record DeleteTaskCommand(Guid Id) : IRequest<Unit>;

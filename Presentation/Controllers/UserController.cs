@@ -76,7 +76,7 @@ public class UserController(IMediator mediator) : BaseController(mediator)
     [ProducesResponseType(typeof(IEnumerable<IdentityError>), 401)]
     public async Task<IActionResult> RegisterUser([FromBody] RegisterUserDTO model)
     {
-        var command = new RegisterUserCommand(model.Login, model.Password, model.ConfirmPassword);
+        var command = new RegisterUserCommand(model.Login, model.Position, model.Password, model.ConfirmPassword);
 
         await Mediator.Send(command);
 

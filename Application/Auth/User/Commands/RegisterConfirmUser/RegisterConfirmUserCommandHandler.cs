@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Identity;
 namespace Application.Auth.User.Commands.RegisterConfirmUser;
 
 public class RegisterConfirmUserCommandHandler(UserManager<AppUser> userManager)
-    : IRequestHandler<RegisterConfirmUserCommand>
+    : IRequestHandler<RegisterConfirmUserCommand, Unit>
 {
     private readonly UserManager<AppUser> _userManager = userManager;
 
-    public async System.Threading.Tasks.Task Handle(RegisterConfirmUserCommand request,
+    public async System.Threading.Tasks.Task<Unit> Handle(RegisterConfirmUserCommand request,
         CancellationToken cancellationToken)
     {
         var user = await _userManager.FindByIdAsync(request.Id);
@@ -31,6 +31,9 @@ public class RegisterConfirmUserCommandHandler(UserManager<AppUser> userManager)
         }
 
         user.IsConfirmedProfile = true;
+        user.Position = request.Position;
         await _userManager.UpdateAsync(user);
+
+        return Unit.Value;
     }
 }

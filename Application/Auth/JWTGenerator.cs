@@ -8,9 +8,8 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Application.Auth;
 
-public class JWTGenerator(IConfiguration configuration, AuthOptions authOptions, UserManager<AppUser> userManager)
+public class JWTGenerator(AuthOptions authOptions, UserManager<AppUser> userManager)
 {
-    private readonly IConfiguration _configuration = configuration;
     private readonly UserManager<AppUser> _userManager = userManager;
     private readonly AuthOptions _authOptions = authOptions;
 
@@ -30,7 +29,7 @@ public class JWTGenerator(IConfiguration configuration, AuthOptions authOptions,
             audience: _authOptions.Audience,
             expires: DateTime.Now.AddDays(_authOptions.LifeTimeInDays),
             claims: claims,
-            signingCredentials:new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authOptions.Secret)),SecurityAlgorithms.HmacSha256));
+            signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authOptions.Secret)), SecurityAlgorithms.HmacSha256));
 
         return new JwtSecurityTokenHandler().WriteToken(jwt);
     }

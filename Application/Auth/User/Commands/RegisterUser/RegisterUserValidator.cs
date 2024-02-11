@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using System.Data;
+using FluentValidation;
 
 namespace Application.Auth.User.Commands.RegisterUser;
 
@@ -8,6 +9,6 @@ public class RegisterUserValidator : AbstractValidator<RegisterUserCommand>
     {
         RuleFor(x => x.Login).NotEmpty();
         RuleFor(x => x.Password).NotEmpty();
-        RuleFor(x => x.ConfirmPassword).NotEmpty().Equal(x => x.Password);
+        RuleFor(x => x.Password).Equal(x => x.ConfirmPassword).NotEmpty();
     }
 }

@@ -5,11 +5,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Task.Commands.DeleteTask;
 
-public class DeleteTaskCommandHandler(IAppDbContext dbContext) : IRequestHandler<DeleteTaskCommand>
+public class DeleteTaskCommandHandler(IAppDbContext dbContext) : IRequestHandler<DeleteTaskCommand, Unit>
 {
     private readonly IAppDbContext _dbContext = dbContext;
 
-    public async System.Threading.Tasks.Task Handle(DeleteTaskCommand request, CancellationToken cancellationToken)
+    public async System.Threading.Tasks.Task<Unit> Handle(DeleteTaskCommand request,
+        CancellationToken cancellationToken)
     {
         var task = await _dbContext.Tasks.FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
@@ -20,5 +21,7 @@ public class DeleteTaskCommandHandler(IAppDbContext dbContext) : IRequestHandler
 
         _dbContext.Tasks.Remove(task);
         await _dbContext.SaveChangesAsync(cancellationToken);
+
+        return Unit.Value;
     }
 }

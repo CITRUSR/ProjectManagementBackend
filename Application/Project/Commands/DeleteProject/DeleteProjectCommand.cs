@@ -2,4 +2,4 @@
 
 namespace Application.Project.Commands.DeleteProject;
 
-public record DeleteProjectCommand(Guid ProjectId) : IRequest;
+public record DeleteProjectCommand(Guid ProjectId) : IRequest<Unit>;
