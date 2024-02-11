@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Application.Auth.User.Commands.RegisterUser;
 
-public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand>
+public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, Unit>
 {
     private readonly UserManager<AppUser> _userManager;
 
@@ -14,11 +14,13 @@ public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand>
         _userManager = userManager;
     }
 
-    public async System.Threading.Tasks.Task Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+    public async System.Threading.Tasks.Task<Unit> Handle(RegisterUserCommand request,
+        CancellationToken cancellationToken)
     {
         var user = new AppUser
         {
             UserName = request.Login,
+            Position = request.Position,
         };
 
         var result = await _userManager.CreateAsync(user, request.Password);
@@ -27,5 +29,7 @@ public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand>
         {
             throw new IdentityException("Identity error", result.Errors);
         }
+
+        return Unit.Value;
     }
 }
