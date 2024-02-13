@@ -185,7 +185,7 @@ public class ProjectController(IMediator mediator, IConfiguration configuration)
     /// </remarks>
     /// <param name="projectId"></param>
     /// <returns>No Content</returns>
-    /// <response code="200">No content</response>
+    /// <response code="200">Ok</response>
     /// <response code="401">User is not authorized</response>
     /// <response code="403">User doesn't have the necessary rights</response>
     /// <response code="404">Project is not found</response>
@@ -198,6 +198,6 @@ public class ProjectController(IMediator mediator, IConfiguration configuration)
 
         await _mediator.Send(command);
 
-        return NoContent();
+        return Ok();
     }
 }

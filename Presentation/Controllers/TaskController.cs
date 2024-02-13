@@ -211,8 +211,8 @@ public class TaskController(IMediator mediator) : BaseController(mediator)
     /// 
     /// </remarks>
     /// <param name="id"></param>
-    /// <returns>No content</returns>
-    /// <response code="204">No Content</response>
+    /// <returns>Ok</returns>
+    /// <response code="200">No Content</response>
     /// <response code="401">User is not authorized</response>
     /// <response code="403">User doesn't have the necessary rights</response>
     /// <response code="404">task is not found</response>
@@ -225,6 +225,6 @@ public class TaskController(IMediator mediator) : BaseController(mediator)
 
         await _mediator.Send(command);
 
-        return NoContent();
+        return Ok();
     }
 }

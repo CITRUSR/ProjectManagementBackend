@@ -20,7 +20,7 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "ProjectManagement API",
+        Title = "ProjectsManagement API",
     });
 
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()

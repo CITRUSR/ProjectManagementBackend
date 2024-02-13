@@ -28,7 +28,7 @@ public class UserController(IMediator mediator) : BaseController(mediator)
     ///     Post/LoginUser
     ///     {  
     ///         "Login": "User",
-    ///         "Password": "12345QWasg",
+    ///         "Password": "12345QWasg!",
     ///     }
     /// 
     /// </remarks>
