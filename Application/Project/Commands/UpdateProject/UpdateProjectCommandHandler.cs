@@ -22,7 +22,15 @@ public class UpdateProjectCommandHandler(IAppDbContext dbContext, ProjectMapper 
             throw new NotFoundException($"The project with id:{request.ProjectId} is not found");
         }
 
-        var oldProject = project;
+        var oldProject = new Domain.Project
+        {
+            Id = project.Id,
+            Status = project.Status,
+            Title = project.Title,
+            DateEnd = project.DateEnd,
+            DateStart = project.DateStart,
+            OwnerId = project.OwnerId,
+        };
 
         project.DateStart = request.DateStart;
         project.DateEnd = request.DateEnd;
